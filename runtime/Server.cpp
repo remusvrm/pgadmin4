@@ -48,6 +48,9 @@ Server::Server(quint16 port)
     QSettings settings;
     QString python_path = settings.value("PythonPath").toString();
 
+    // Get python packages from env
+    add_to_path(python_path, qgetenv("PYTHONPATH"));
+
     if (python_path.length() > 0)
     {
         // Split the path setting into individual entries
